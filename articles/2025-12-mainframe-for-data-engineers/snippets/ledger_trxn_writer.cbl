@@ -12,25 +12,24 @@
 
        DATA DIVISION.
        FILE SECTION.
-       *> File Schema(Copybook) Section Starts
+       *>  File Schema(Copybook) Section Starts
        FD  TRXN-FILE.
        01  TRXN-REC.
-           05 TRXN-ID         PIC X(10).
-           05 ACCT-ID         PIC X(10).
-           05 TRXN-AMT        PIC S9(7)V99 COMP-3.
-           05 TRXN-TYPE       PIC X(1).
+           05 TRXN-ID         PIC X(10).           *> Alphanumeric (text) field, Fixed-length, space-padded, Stored as plain characters (human-readable)
+           05 ACCT-ID         PIC 9(12) COMP-3.    *> Numeric-only account number, Stored as packed decimal (COMP-3), Not human-readable without schema
+           05 TRXN-AMT        PIC S9(7)V99 COMP-3. *> Signed numeric amount, Stored as packed decimal storage (COMP-3), Not human-readable without schema
+           05 TRXN-TYPE       PIC X(1).            *> Alphanumeric code, Single-character indicator (e.g. D = Debit, C = Credit), Stored as plain character (human-readable)
 
-           05 TRXN-DATE       PIC 9(8).   *> YYYYMMDD (event date)
-           05 TRXN-TIME       PIC 9(6).   *> HHMMSS   (event time)
+           05 TRXN-DATE       PIC 9(8).            *> Event date, Numeric(YYYYMMDD), Stored as display numeric (human-readable)
+           05 TRXN-TIME       PIC 9(6).            *> Event time, Numeric(HHMMSS), Stored as display numeric (human-readable)
 
-           05 POST-DATE       PIC 9(8).   *> YYYYMMDD (posting date)
-           05 POST-TIME       PIC 9(6).   *> HHMMSS   (posting time)
+           05 POST-DATE       PIC 9(8).            *> Event date, Numeric(YYYYMMDD), Stored as display numeric (human-readable)
+           05 POST-TIME       PIC 9(6).            *> Event time, Numeric(HHMMSS), Stored as display numeric (human-readable)
 
-           05 CURRENCY-CODE   PIC X(3).
-           05 CHANNEL-CODE    PIC X(3).
-           05 TRXN-DESC       PIC X(20).
-       *> File Schema(Copybook) Section Ends
-
+           05 CURRENCY-CODE   PIC X(3).            *> ISO currency code (e.g. INR, USD), Alphanumeric, fixed-length, Stored as plain character (human-readable)
+           05 CHANNEL-CODE    PIC X(3).            *> Source channel code, Alphanumeric, fixed-length, Stored as plain character (human-readable)
+           05 TRXN-DESC       PIC X(20).           *> Short description, Alphanumeric (text) field, Fixed-length, space-padded, Stored as plain characters (human-readable)
+       *>  File Schema(Copybook) Section Ends
 
        WORKING-STORAGE SECTION.
        01 WS-FILE-STATUS     PIC XX.
@@ -38,7 +37,9 @@
        01 WS-ARG-VALUE       PIC X(300).
 
        01 WS-TRXN-ID         PIC X(10).
-       01 WS-ACCT-ID         PIC X(10).
+
+       01 WS-ACCT-ID-TXT     PIC X(50).
+       01 WS-ACCT-ID-N       PIC 9(12).
 
        01 WS-AMT-TXT         PIC X(50).
        01 WS-AMT-N           PIC S9(7)V99.
@@ -65,7 +66,7 @@
                DISPLAY "Usage:"
                DISPLAY "  ./ledger_trxn_writer_args TRXN_ID ACCT_ID AMT TYPE TRXN_DT TRXN_TM POST_DT POST_TM CURR CHNL DESC OUTPUT_FILE"
                DISPLAY "Example:"
-               DISPLAY "  ./ledger_trxn_writer_args TRX0000003 ACCT123456 1800.25 D 20250919 235840 20250920 001510 INR MOB ""LATE NIGHT TXN"" /Users/aarvi/Ravi/DataEngineering/data/transactions.dat"
+               DISPLAY "  ./ledger_trxn_writer_args TRX0000003 000000123456 1800.25 D 20250919 235840 20250920 001510 INR MOB ""LATE NIGHT TXN"" /Users/aarvi/Ravi/DataEngineering/data/transactions.dat"
                STOP RUN
            END-IF
 
@@ -73,9 +74,10 @@
            ACCEPT WS-ARG-VALUE FROM ARGUMENT-VALUE
            MOVE WS-ARG-VALUE(1:10) TO WS-TRXN-ID
 
-           *> Arg 2: ACCT_ID
+           *> Arg 2: ACCT_ID (numeric)
            ACCEPT WS-ARG-VALUE FROM ARGUMENT-VALUE
-           MOVE WS-ARG-VALUE(1:10) TO WS-ACCT-ID
+           MOVE FUNCTION TRIM(WS-ARG-VALUE) TO WS-ACCT-ID-TXT
+           COMPUTE WS-ACCT-ID-N = FUNCTION NUMVAL(WS-ACCT-ID-TXT)
 
            *> Arg 3: AMOUNT (text -> numeric)
            ACCEPT WS-ARG-VALUE FROM ARGUMENT-VALUE
@@ -120,7 +122,7 @@
 
            *> Build record (move all WS values into record)
            MOVE WS-TRXN-ID       TO TRXN-ID
-           MOVE WS-ACCT-ID       TO ACCT-ID
+           MOVE WS-ACCT-ID-N     TO ACCT-ID
            MOVE WS-AMT-N         TO TRXN-AMT
            MOVE WS-TRXN-DATE-N   TO TRXN-DATE
            MOVE WS-TRXN-TIME-N   TO TRXN-TIME
