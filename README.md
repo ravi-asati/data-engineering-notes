@@ -2,6 +2,12 @@
 
 This repository accompanies my writing on Substack/LinkedIn, where I share real-world experiences from my journey as a Data Engineer.
 
+> ⚠️ **Read-only repository**
+>
+> This repository is intentionally maintained in read-only mode.
+> It exists as a reference for my writing and personal experiments.
+> Pull requests, issues, and discussions are disabled by design.
+
 The focus here is **not on tutorials, cheat-sheets or exhaustive how-to guides**, but on:
 - How data pipelines are actually built and evolved in production
 - Design decisions, trade-offs, and constraints
@@ -56,5 +62,3 @@ All examples and projects in this repository are:
 ## License
 
 This repository is licensed under the MIT License.
-
-> This repository is intentionally maintained in read-only mode.
