@@ -18,7 +18,7 @@ def rand_dt_tm() -> tuple[str, str]:
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("num_records", type=int, help="How many records to generate")
-    p.add_argument("file_name", help="Output file path (e.g., /tmp/trxn.dat)")
+    p.add_argument("file_name", help="Output file path (e.g., ./trxn_cobol.dat)")
     p.add_argument("mode", choices=["rewrite", "append"], help="File mode")
     p.add_argument("--exe", default="./trxn_writer_simple", help="Path to COBOL executable")
     args = p.parse_args()
@@ -71,4 +71,4 @@ def main() -> None:
 if __name__ == "__main__":
     main()
 
- # python3 call_trxn_writer_simple_cobol_program.py 50 /Users/aarvi/Ravi/DataEngineering/data/trxn.dat rewrite
+ # python3 call_trxn_writer_simple_cobol_program.py 50 ./trxn_cobol.dat.ebcdic rewrite
