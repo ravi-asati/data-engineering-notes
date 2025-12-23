@@ -45,7 +45,7 @@
                DISPLAY "  ./trxn_writer_simple <TRXN_ID> <TRXN_DT> <TRXN_TM> <TRXN_AMNT> <FILE_NAME> <MODE>"
                DISPLAY "Where MODE = R (rewrite) or A (append)"
                DISPLAY "Example:"
-               DISPLAY "  ./trxn_writer_simple 000000001 20251220 213010 -250.75 ./trxn_cobol.dat R"
+               DISPLAY "  ./trxn_writer_simple 000000001 20251220 213010 -250.75 ./TRXN_COBOL_DATA R"
                STOP RUN
            END-IF
 
