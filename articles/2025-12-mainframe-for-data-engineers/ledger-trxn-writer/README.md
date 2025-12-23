@@ -21,7 +21,7 @@ The `ledger_trxn_writer.cbl` program:
   - Spark + Cobrix ingestion
   - Conversion to Parquet
  
-***Note-*** Generated COBOL file is encoded with OS native character-set (ASCII or UTF8) not **EBCDIC**. 
+***Note-*** Generated COBOL file will be encoded with OS native character-set **(ASCII or UTF8)** not **EBCDIC**. 
 
 ---
 
