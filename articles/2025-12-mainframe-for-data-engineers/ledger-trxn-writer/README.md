@@ -40,3 +40,5 @@ The `ledger_trxn_writer.cbl` program:
   +12345.67 \
   ./trxn_comp3.dat \
    ```
+  If ./trxn_comp3.dat exists then record will be appned to it else file will be created.
+  Directory should exist though otherwise program will fail
