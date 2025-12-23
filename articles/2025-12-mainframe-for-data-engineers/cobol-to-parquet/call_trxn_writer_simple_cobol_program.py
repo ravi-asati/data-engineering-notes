@@ -65,7 +65,7 @@ def main() -> None:
     p.add_argument("num_records", type=int, help="Number of records to generate")
     p.add_argument("file_name", help="Output file path (base binary file)")
     p.add_argument("mode", choices=["rewrite", "append"], help="rewrite or append")
-    p.add_argument("--exe", default="./trxn_writer_sample", help="Path to COBOL executable")
+    p.add_argument("--exe", default="./trxn_writer_simple", help="Path to COBOL executable")
     args = p.parse_args()
 
     exe = args.exe
