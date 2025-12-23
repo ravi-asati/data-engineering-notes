@@ -29,6 +29,15 @@ The `ledger_trxn_writer.cbl` program:
 
 1. Compile the program.
    ```
-   cobc -x ledger_trxn_writer.cbl
+   cobc -x ./ledger_trxn_writer.cbl
    ```
-3. 
+2.  Execute the program
+   ```
+   ./ledger_trxn_writer \
+  100000001 \
+  20251220 \
+  134075 \
+  +12345.67 \
+  ./trxn_comp3.dat \
+  WRITE
+   ```
