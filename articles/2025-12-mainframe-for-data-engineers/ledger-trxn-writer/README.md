@@ -46,5 +46,5 @@ INR MOB \
 "MOB IMPS" \
 ./transactions.dat
    ```
-  If ./transactions.dat exists then record will be appned to it else file will be created.
+  If **./transactions.dat** exists then record will be appned to it else file will be created.
   Directory should exist though otherwise program will fail
