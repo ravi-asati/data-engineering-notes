@@ -154,6 +154,6 @@ To generate COBOL data files locally, I used **GnuCOBOL**, an open-source COBOL 
   - Use `COMP` / `COMP-3` fields to simulate binary numerics
  
 ### Others
-1. **Python -** Python 3.9.6
-2. **Spark -** Spark 4.0.1 using Scala 2.13.16
+1. **Python-** Python 3.9.6
+2. **Spark-** Spark 4.0.1 using Scala 2.13.16
 3. **Cobrix Package-** za.co.absa.cobrix:spark-cobol_2.13:2.9.4
