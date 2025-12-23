@@ -130,3 +130,30 @@ spark-submit \
 This program will read COBOL data file and convert it to Parquet file.
 
 ## Setup I used
+
+This setup is intentionally **minimal and local**, but designed to closely simulate a real-world mainframe → analytics workflow.
+
+### Hardware / OS
+- **Machine**: MacBook Air (Apple Silicon – M-series)
+- **OS**: macOS
+- **Architecture**: `arm64`
+
+> The same approach should work on Linux with little to no change.
+
+---
+
+### COBOL Environment (Local Mainframe Simulation)
+
+To generate COBOL data files locally, I used **GnuCOBOL**, an open-source COBOL compiler.
+
+- **Compiler**: GnuCOBOL
+- **Executable**: `cobc`
+- **Purpose**:
+  - Compile `.cbl` programs
+  - Produce fixed-length COBOL data files
+  - Use `COMP` / `COMP-3` fields to simulate binary numerics
+ 
+### Others
+> **Python -** Python 3.9.6
+> **Spark -** Spark 4.0.1 using Scala 2.13.16
+> **Cobrix Package--** za.co.absa.cobrix:spark-cobol_2.13:2.9.4
