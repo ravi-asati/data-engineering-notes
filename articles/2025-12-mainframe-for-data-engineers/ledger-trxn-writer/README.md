@@ -39,5 +39,4 @@ The `ledger_trxn_writer.cbl` program:
   134075 \
   +12345.67 \
   ./trxn_comp3.dat \
-  WRITE
    ```
