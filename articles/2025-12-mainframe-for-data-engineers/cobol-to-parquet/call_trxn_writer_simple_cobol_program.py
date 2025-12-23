@@ -71,4 +71,4 @@ def main() -> None:
 if __name__ == "__main__":
     main()
 
- # python3 call_trxn_writer_simple_cobol_program.py 50 ./trxn_cobol.dat.ebcdic rewrite
+ # python3 call_trxn_writer_simple_cobol_program.py 50 ./trxn_cobol.dat rewrite
