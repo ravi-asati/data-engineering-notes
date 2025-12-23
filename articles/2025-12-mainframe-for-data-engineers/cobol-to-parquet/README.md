@@ -99,13 +99,13 @@ This mirrors how modern analytics pipelines handle mainframe data.
 
 ## How to run?
 
-**1> Compile COBOL program**
+**1. Compile COBOL program**
 ```
 cobc -x ./trxn_writer_simple.cbl
 ```
 This will generate an executable ./trxn_writer_simple
 
-**2> Run Python Generator**
+**2. Run Python Generator**
 ```
 python3 call_trxn_writer_simple_cobol_program.py 100 ./TRXN_COBOL_DATA rewrite
 ```
@@ -115,7 +115,7 @@ This should generate two files-
 **./TRXN_COBOL_DATA.ebcdic** - **EBCDIC** files by converting encoding for text fields to ebcdic
 
 
-**3> Run PySpark Converter**
+**3. Run PySpark Converter**
 
 ```
 spark-submit \
