@@ -12,12 +12,14 @@
 
        DATA DIVISION.
        FILE SECTION.
+       *> File Schema (Copybook) section starts here
        FD  TRXN-FILE.
        01  TRXN-REC.
-           05 TRXN-ID     PIC 9(9)       COMP-3.    *> 9 digits packed => 5 bytes
+           05 TRXN-ID     PIC 9(9)       COMP-3.    *> 9 digits packed integer => 5 bytes
            05 TRXN-DT     PIC X(8).                 *> YYYYMMDD text (ASCII here)
            05 TRXN-TM     PIC X(6).                 *> HHMMSS   text (ASCII here)
            05 TRXN-AMNT   PIC S9(7)V99   COMP-3.    *> signed amount => 5 bytes
+       *> File Schema (Copybook) section ends here 
 
        WORKING-STORAGE SECTION.
        01  WS-FILE-STATUS   PIC XX.
@@ -40,10 +42,10 @@
 
            IF WS-ARG-COUNT < 6
                DISPLAY "Usage:"
-               DISPLAY "  ./trxn_writer_comp3 <TRXN_ID> <TRXN_DT> <TRXN_TM> <TRXN_AMNT> <FILE_NAME> <MODE>"
+               DISPLAY "  ./trxn_writer_simple <TRXN_ID> <TRXN_DT> <TRXN_TM> <TRXN_AMNT> <FILE_NAME> <MODE>"
                DISPLAY "Where MODE = R (rewrite) or A (append)"
                DISPLAY "Example:"
-               DISPLAY "  ./trxn_writer_comp3 1001 20251220 213010 -250.75 /tmp/trxn.dat R"
+               DISPLAY "  ./trxn_writer_simple 000000001 20251220 213010 -250.75 /tmp/trxn.dat R"
                STOP RUN
            END-IF
 
