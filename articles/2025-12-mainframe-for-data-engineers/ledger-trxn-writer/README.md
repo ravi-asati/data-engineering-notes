@@ -33,12 +33,18 @@ The `ledger_trxn_writer.cbl` program:
    ```
 2.  Execute the program
    ```
-   ./ledger_trxn_writer \
-  100000001 \
-  20251220 \
-  134075 \
-  +12345.67 \
-  ./trxn_comp3.dat \
+./ledger_trxn_writer \
+TRX0000003 \
+000000123456 \
+1800.25 \
+D \
+20250919 \
+235840 \
+20250920 \
+001510 \
+INR MOB \
+"MOB IMPS" \
+./transactions.dat
    ```
-  If ./trxn_comp3.dat exists then record will be appned to it else file will be created.
+  If ./transactions.dat exists then record will be appned to it else file will be created.
   Directory should exist though otherwise program will fail
