@@ -10,3 +10,5 @@
 
        *> This is fixed-size records file
        *> Record size is 24 bytes
+
+       *> This Copybook nothing but FILESECTION of trxn_writer_simple.cbl
