@@ -112,7 +112,7 @@ python3 call_trxn_writer_simple_cobol_program.py 100 ./TRXN_COBOL_DATA rewrite
 
 This should generate two files-
 **./TRXN_COBOL_DATA** - Base file generate by **GnuCOBOL**
-**./TRXN_COBOL_DATA.ebcdic** - **EBCDIC** files by converting encoding for text fields to ebcdic
+**./TRXN_COBOL_DATA.ebcdic** - **EBCDIC** file by converting encoding for text fields to ebcdic
 
 
 **3. Run PySpark Converter**
